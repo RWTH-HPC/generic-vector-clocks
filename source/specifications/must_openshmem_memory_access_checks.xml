@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE analysis-specification PUBLIC "must_base" "/Users/hilbrich/workspace/gti/system-builder/dtd/analysis-specification.dtd">
+<analysis-specification group-name="MUST_openSHMEM" include-path="@CMAKE_INSTALL_PREFIX@/include" path-to-libs="@CMAKE_INSTALL_PREFIX@/modules">
+    <analyses>
+        <analysis name="openSHMEMMemoryAccessChecks">
+            <registered-name>openSHMEMMemoryAccessChecks</registered-name>
+            <module-name>libopenSHMEMMemoryAccessChecks</module-name>
+            <header-name>I_openSHMEMMemoryAccessChecks.h</header-name>
+            <interface-type>I_openSHMEMMemoryAccessChecks</interface-type>
+            <is-global>0</is-global>
+            <is-process-global>0</is-process-global>
+            <dependencies>
+                <analysis-depend group="MUST_Base">ParallelIdAnalysis</analysis-depend>
+                <analysis-depend group="MUST_Base">CreateMessage</analysis-depend>
+                <analysis-depend group="MUST_Base">ArgumentAnalysis</analysis-depend>
+            </dependencies>
+            <analysis-function name="openSHMEMalloc">
+                <analysis-argument order="0" type="uint64_t" name="pId" />
+                <analysis-argument order="1" type="uint64_t" name="lId" />
+                <analysis-argument order="2" type="void*" name="devicePtr" />
+                <analysis-argument order="3" type="size_t" name="size" />
+            </analysis-function>
+            <analysis-function name="checkOpenSHMEMValidMemoryAccess">
+                <analysis-argument order="0" type="uint64_t" name="pId" />
+                <analysis-argument order="1" type="uint64_t" name="lId" />
+                <analysis-argument order="2" type="int" name="aid" />
+                <analysis-argument order="3" type="void*" name="devicePtr" />
+                <analysis-argument order="4" type="size_t" name="size" />
+            </analysis-function>
+            <analysis-function name="openSHMEMfree">
+                <analysis-argument order="0" type="uint64_t" name="pId" />
+                <analysis-argument order="1" type="uint64_t" name="lId" />
+                <analysis-argument order="2" type="void*" name="devicePtr" />
+            </analysis-function>
+        </analysis>
+    </analyses>
+    <operations>
+        <operation return-type="size_t" name="accessSize">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+                <operation-argument order="0" type="void *" />
+                <operation-argument order="1" type="int" />
+            </operation-arguments>
+            <source-template>
+                size_t RETURN = sizeof(*ARG0)*ARG1;
+            </source-template>
+        </operation>
+    </operations>
+</analysis-specification>

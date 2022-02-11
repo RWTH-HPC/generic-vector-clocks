@@ -1,0 +1,14 @@
+config.test_mpicc_compiler = "@MUST_TEST_MPIC_COMPILER@"
+config.test_compiler_features = "@MUST_TEST_COMPILER_FEATURES@"
+config.test_filecheck = "@MUST_FILECHECK_EXECUTABLE@"
+config.test_extra_flags = "@MUST_TEST_FLAGS@"
+config.project_obj_root = "@CMAKE_CURRENT_BINARY_DIR@"
+config.operating_system = "@CMAKE_SYSTEM_NAME@"
+config.test_mustrun = "@MUST_MUSTRUN@"
+config.mustrun_execution_flags = "@MUST_MUSTRUN_EXECUTION_FLAGS@"
+config.mpiexec_numproc_flag = "@MPIEXEC_NUMPROC_FLAG@"
+
+config.test_srcdir = "@CMAKE_CURRENT_SOURCE_DIR@"
+
+# Let the main config do the real work.
+lit_config.load_config(config, "@CMAKE_CURRENT_SOURCE_DIR@/lit.cfg")

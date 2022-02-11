@@ -1,0 +1,708 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE analysis-specification PUBLIC "must_base" "/Users/saibot/workspace/gti/system-builder/dtd/analysis-specification.dtd">
+<analysis-specification group-name="MUST_OpenShmemTextuallyAligned" include-path="@CMAKE_INSTALL_PREFIX@/include" path-to-libs="@CMAKE_INSTALL_PREFIX@/modules">
+    <analyses>
+        <analysis name="OpenShmemTextAlignedColls">
+            <registered-name>OpenShmemTextAlignedColls</registered-name>
+            <module-name>libopenShmemTextAlignedColls</module-name>
+            <header-name>I_OpenShmemTextAlignedColls.h</header-name>
+            <interface-type>I_OpenShmemTextAlignedColls</interface-type>
+            <is-global>1</is-global>
+            <is-process-global>0</is-process-global>
+            <dependencies/><reductions>
+	<analysis-depend>OpenShmemTextAlignedCollsReduction</analysis-depend></reductions>
+        	<analysis-function name="collBasic">
+                <analysis-argument order="0" type="uint64_t" name="pId" />
+                <analysis-argument order="1" type="uint64_t" name="lId" />
+                <analysis-argument order="2" type="int" name="PE_start" />
+                <analysis-argument order="3" type="int" name="logPE_stride" />
+                <analysis-argument order="4" type="int" name="PE_size" />
+                <analysis-argument order="5" type="int" name="collType" />
+                <analysis-argument order="6" type="int" name="numTasks" />
+            </analysis-function>
+            <analysis-function name="collRoot">
+                <analysis-argument order="0" type="uint64_t" name="pId" />
+                <analysis-argument order="1" type="uint64_t" name="lId" />
+                <analysis-argument order="2" type="int" name="PE_start" />
+                <analysis-argument order="3" type="int" name="logPE_stride" />
+                <analysis-argument order="4" type="int" name="PE_size" />
+                <analysis-argument order="5" type="int" name="PE_root" />
+                <analysis-argument order="6" type="int" name="collType" />
+                <analysis-argument order="7" type="int" name="numTasks" />
+            </analysis-function>
+            <analysis-function name="collEqualNum">
+                <analysis-argument order="0" type="uint64_t" name="pId" />
+                <analysis-argument order="1" type="uint64_t" name="lId" />
+                <analysis-argument order="2" type="int" name="PE_start" />
+                <analysis-argument order="3" type="int" name="logPE_stride" />
+                <analysis-argument order="4" type="int" name="PE_size" />
+                <analysis-argument order="5" type="int" name="nelems" />
+                <analysis-argument order="6" type="int" name="collType" />
+                <analysis-argument order="7" type="int" name="numTasks" />
+            </analysis-function>
+            <analysis-function name="collEqualNumSizeT">
+                <analysis-argument order="0" type="uint64_t" name="pId" />
+                <analysis-argument order="1" type="uint64_t" name="lId" />
+                <analysis-argument order="2" type="int" name="PE_start" />
+                <analysis-argument order="3" type="int" name="logPE_stride" />
+                <analysis-argument order="4" type="int" name="PE_size" />
+                <analysis-argument order="5" type="size_t" name="nelems" />
+                <analysis-argument order="6" type="int" name="collType" />
+                <analysis-argument order="7" type="int" name="numTasks" />
+            </analysis-function>
+        </analysis>
+        <analysis name="OpenShmemTextAlignedCollsReduction"
+        	reduction="yes">
+        	<registered-name>
+        		OpenShmemTextAlignedCollsReduction
+        	</registered-name>
+        	<module-name>
+        		libopenShmemTextAlignedCollsReduction
+        	</module-name>
+        	<header-name>I_OpenShmemTextAlignedColls.h</header-name>
+        	<interface-type>I_OpenShmemTextAlignedColls</interface-type>
+        	<is-global>0</is-global>
+        	<is-process-global>0</is-process-global>
+        	<dependencies>
+        		<analysis-depend group="MUST_Base">
+        			ParallelIdAnalysis
+        		</analysis-depend>
+        		<analysis-depend group="MUST_Base">
+        			LocationAnalysis
+        		</analysis-depend>
+        		<analysis-depend group="MUST_Base">
+        			CreateMessage
+        		</analysis-depend>
+        	</dependencies>
+        	<analysis-function name="collBasic">
+        		<analysis-argument order="0" type="uint64_t" name="pId" />
+        		<analysis-argument order="1" type="uint64_t" name="lId" />
+        		<analysis-argument order="2" type="int" name="PE_start" />
+        		<analysis-argument order="3" type="int"
+        			name="logPE_stride" />
+        		<analysis-argument order="4" type="int" name="PE_size" />
+        		<analysis-argument order="5" type="int" name="collType" />
+        		<analysis-argument order="6" type="int" name="numTasks" />
+        	</analysis-function>
+        	<analysis-function name="collRoot">
+        		<analysis-argument order="0" type="uint64_t" name="pId" />
+        		<analysis-argument order="1" type="uint64_t" name="lId" />
+        		<analysis-argument order="2" type="int" name="PE_start" />
+        		<analysis-argument order="3" type="int"
+        			name="logPE_stride" />
+        		<analysis-argument order="4" type="int" name="PE_size" />
+        		<analysis-argument order="5" type="int" name="PE_root" />
+        		<analysis-argument order="6" type="int" name="collType" />
+        		<analysis-argument order="7" type="int" name="numTasks" />
+        	</analysis-function>
+        	<analysis-function name="collEqualNum">
+        		<analysis-argument order="0" type="uint64_t" name="pId" />
+        		<analysis-argument order="1" type="uint64_t" name="lId" />
+        		<analysis-argument order="2" type="int" name="PE_start" />
+        		<analysis-argument order="3" type="int"
+        			name="logPE_stride" />
+        		<analysis-argument order="4" type="int" name="PE_size" />
+        		<analysis-argument order="5" type="int" name="nelems" />
+        		<analysis-argument order="6" type="int" name="collType" />
+        		<analysis-argument order="7" type="int" name="numTasks" />
+        	</analysis-function>
+        	<analysis-function name="collEqualNumSizeT">
+        		<analysis-argument order="0" type="uint64_t" name="pId" />
+        		<analysis-argument order="1" type="uint64_t" name="lId" />
+        		<analysis-argument order="2" type="int" name="PE_start" />
+        		<analysis-argument order="3" type="int"
+        			name="logPE_stride" />
+        		<analysis-argument order="4" type="int" name="PE_size" />
+        		<analysis-argument order="5" type="size_t"
+        			name="nelems" />
+        		<analysis-argument order="6" type="int" name="collType" />
+        		<analysis-argument order="7" type="int" name="numTasks" />
+        	</analysis-function>
+        </analysis>
+    </analyses>
+    <operations>  
+        <operation return-type="int" name="getOpenShmemCount1">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = 1;</source-template>
+        </operation>      
+        <operation return-type="int" name="getOpenShmemCount0">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = 0;</source-template>
+        </operation>
+        <!-- TODO: This uses MPI_Comm_size as its implementation, thus it assumes some MPI bundled form of an OpenSHMEM
+                   For a product version this needs some portability extension. -->
+        <operation return-type="int" name="getOpenShmemNumPEs">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN; MPI_Comm_size(MPI_COMM_WORLD, &amp;RETURN);</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdBarrier">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_BARRIER;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdBarrierAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_BARRIER_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdBroadcast4">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_BROADCAST4;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdBroadcast8">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_BROADCAST8;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdBroadcast32">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_BROADCAST32;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdBroadcast64">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_BROADCAST64;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdCollect4">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_COLLECT4;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdCollect8">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_COLLECT8;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdCollect32">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_COLLECT32;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdCollect64">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_COLLECT64;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdFCollect4">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_FCOLLECT4;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdFCollect8">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_FCOLLECT8;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdFCollect32">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_FCOLLECT32;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdFCollect64">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_FCOLLECT64;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdIntAndToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_INT_AND_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdInt4AndToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_INT4_AND_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdInt8AndToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_INT8_AND_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdLongAndToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_LONG_AND_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdLongLongAndToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_LONGLONG_AND_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdShortAndToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_SHORT_AND_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdIntOrToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_INT_OR_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdInt4OrToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_INT4_OR_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdInt8OrToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_INT8_OR_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdLongOrToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_LONG_OR_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdLongLongOrToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_LONGLONG_OR_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdShortOrToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_SHORT_OR_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdIntXorToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_INT_XOR_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdInt4XorToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_INT4_XOR_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdInt8XorToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_INT8_XOR_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdLongXorToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_LONG_XOR_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdLongLongXorToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_LONGLONG_XOR_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdShortXorToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_SHORT_XOR_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdDoubleMaxToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_DOUBLE_MAX_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdFloatMaxToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_FLOAT_MAX_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdIntMaxToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_INT_MAX_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdInt4MaxToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_INT4_MAX_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdInt8MaxToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_INT8_MAX_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdLongMaxToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_LONG_MAX_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdLongDoubleMaxToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_LONGDOUBLE_MAX_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdLongLongMaxToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_LONGLONG_MAX_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdShortMaxToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_SHORT_MAX_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdReal4MaxToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_REAL4_MAX_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdReal8MaxToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_REAL8_MAX_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdReal16MaxToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_REAL16_MAX_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdDoubleMinToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_DOUBLE_MIN_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdFloatMinToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_FLOAT_MIN_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdIntMinToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_INT_MIN_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdInt4MinToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_INT4_MIN_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdInt8MinToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_INT8_MIN_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdLongMinToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_LONG_MIN_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdLongDoubleMinToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_LONGDOUBLE_MIN_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdLongLongMinToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_LONGLONG_MIN_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdShortMinToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_SHORT_MIN_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdReal4MinToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_REAL4_MIN_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdReal8MinToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_REAL8_MIN_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdReal16MinToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_REAL16_MIN_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdDoubleSumToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_DOUBLE_SUM_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdFloatSumToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_FLOAT_SUM_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdIntSumToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_INT_SUM_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdInt4SumToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_INT4_SUM_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdInt8SumToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_INT8_SUM_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdLongSumToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_LONG_SUM_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdLongDoubleSumToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_LONGDOUBLE_SUM_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdLongLongSumToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_LONGLONG_SUM_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdShortSumToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_SHORT_SUM_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdReal4SumToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_REAL4_SUM_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdReal8SumToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_REAL8_SUM_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdReal16SumToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_REAL16_SUM_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdDoubleProdToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_DOUBLE_PROD_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdFloatProdToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_FLOAT_PROD_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdIntProdToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_INT_PROD_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdInt4ProdToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_INT4_PROD_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdInt8ProdToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_INT8_PROD_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdLongProdToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_LONG_PROD_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdLongDoubleProdToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_LONGDOUBLE_PROD_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdLongLongProdToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_LONGLONG_PROD_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdShortProdToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_SHORT_PROD_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdReal4ProdToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_REAL4_PROD_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdReal8ProdToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_REAL8_PROD_TO_ALL;</source-template>
+        </operation>
+        <operation return-type="int" name="getOpenShmemIdReal16ProdToAll">
+            <extra-headers>
+            </extra-headers>
+            <operation-arguments>
+            </operation-arguments>
+            <source-template>int RETURN = (int)OPEN_SHMEM_COLL_REAL16_PROD_TO_ALL;</source-template>
+        </operation>
+    </operations>
+</analysis-specification>

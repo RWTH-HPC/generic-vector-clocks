@@ -1,0 +1,4 @@
+bench_id,dataset,iterations,comm_strat,tasks_per_node,nodes,raw,binomial
+137,lref,3,mpi,24,8,137.716785,166.806594
+137,lref,3,mpi,24,16,69.674341,94.067127
+137,lref,3,mpi,24,32,34.982078,85.212597

@@ -1,0 +1,48 @@
+# Invocation command line:
+# /work/bw579735/SPEC/mpi_new/bin/runspec --config=claix_intelmpi --reportable --iterations=3 --ranks 24 --flagsurl=/work/bw579735/SPEC/mpi_new/result/claix-mpi.xml -I medium
+# output_root was not used for this run
+############################################################################
+#
+#####################################################################
+#
+# Config file to run SPEC MPI2007 with Intel Software Toolchain and MUST
+#
+#####################################################################
+
+ext             = rwth_plain
+env_vars	= 1
+basepeak	= 1
+makeflags	= -j 32
+output_format	= all
+output_root = #OUTPUT_ROOT_DIR#
+
+FC	= mpiifort
+CC	= mpiicc
+CXX	= mpiicpc
+
+ENV_MPIR_CVAR_COLL_ALIAS_CHECK=0
+#ENV_I_MPI_COMPATIBILITY=3
+
+#####################################################################
+#  Portability flags
+#####################################################################
+
+121.pop2=default=default=default:
+CPORTABILITY = -DSPEC_MPI_CASE_FLAG
+
+126.lammps=default=default=default:
+CXXPORTABILITY = -DMPICH_IGNORE_CXX_SEEK
+
+127.wrf2=default=default=default:
+CPORTABILITY = -DSPEC_MPI_CASE_FLAG -DSPEC_MPI_LINUX
+
+130.socorro=default=default=default:
+srcalt=nullify_ptrs
+FPORTABILITY = -assume nostd_intent_in
+
+#################################################################
+# Optimization flags
+#################################################################
+default=default=default=default:
+OPTIMIZE  = -O3 -xCORE-AVX512 -no-prec-div -ipo
+submit = #MUST_EXE# --must:quiet --must:mode run --must:temp #MUST_TEMP_DIR#/temp_#COMM_STRAT#_plain_${ranks} -n $ranks $command
